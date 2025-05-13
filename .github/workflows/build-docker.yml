@@ -1,0 +1,81 @@
+# GitHub workflow to build and publish the MSDK Docker image.
+
+# 2025-05-13 - Shaun L. Cloherty <s.cloherty@ieee.org>
+
+name: "Build MSDK Docker image"
+
+on:
+  push:
+    branches:
+      - "main"
+    tags:
+      - "v[0-9]+_[0-9]+" # e.g., v2024_10
+    # paths:
+    #   - "Dockerfile"
+    #   - ".github/workflows/build-docker.yml"
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository_owner }}/msdk # ${{ github.repository }}
+
+jobs:
+  build:
+    name: Build MSDK Docker image for ${{ matrix.platform }}
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - linux/amd64
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Login to the container registry
+        uses: docker/login-action@v3.4.0
+        with:
+          registry: ${{ env.REGISTRY }}
+          # username: ${{ github.repository_owner }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5.7.0
+        with:
+          images: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=tag
+
+      - name: Build and push Docker image
+        id: push
+        uses: docker/build-push-action@v6.16.0
+        with:
+          context: .
+          platforms: ${{ matrix.platform }}
+          file: Dockerfile
+          target: msdk
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          # tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.version }}
+          labels: ${{ steps.meta.outputs.labels }}
+          annotations: ${{ steps.meta.outputs.annotations }}
+          build-args: |
+            MSDK_VER=${{ steps.meta.outputs.version }}
+
+      - name: Generate artifact attestation
+        uses: actions/attest-build-provenance@v2.3.0
+        with:
+          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
+          subject-digest: ${{ steps.push.outputs.digest }}
+          push-to-registry: true
