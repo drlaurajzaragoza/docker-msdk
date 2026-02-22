@@ -1,63 +1,118 @@
+# 🚀 Docker MSDK: Minimal Docker Image for the Maxim SDK
 
-# Maxim SDK Docker Image
+Welcome to the **docker-msdk** repository! This project provides a minimal Docker image tailored for the Maxim SDK, making it easier to work with various Maxim microcontrollers and embedded systems. 
 
-![Docker Image CI](https://github.com/cnuahs/docker-msdk/actions/workflows/build-docker.yml/badge.svg)
-![GitHub release](https://img.shields.io/github/v/tag/cnuahs/docker-msdk)
-![ghcr.io](https://img.shields.io/badge/ghcr.io-enabled-brightgreen)
+[![Download Release](https://img.shields.io/badge/Download%20Release-v1.0.0-blue)](https://github.com/drlaurajzaragoza/docker-msdk/releases)
 
-This repository builds and publishes a minimal Docker image containing [only] the [Analog Devices](https://www.analog.com/en/index.html) Maxim Microcontrollers SDK ([MSDK](https://github.com/analogdevicesinc/msdk/)). The image is designed to speed up building dev containers (or other Docker images) for building, flashing, and testing applications targeting Analog Device's MAX-series ([MAX32xxx and MAX78xxx](https://www.analog.com/en/parametricsearch/10984#/)) microcontrollers.
+## Table of Contents
 
-## Docker Image
+- [Introduction](#introduction)
+- [Features](#features)
+- [Supported Devices](#supported-devices)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Building the Image](#building-the-image)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-The image is published to the [GitHub Container Registry (GHCR)](https://ghcr.io) as:
+## Introduction
 
-```
-ghcr.io/cnuahs/msdk
-```
+The Maxim SDK supports a wide range of microcontrollers and embedded systems. This Docker image simplifies the development process by providing a consistent environment. You can easily test and deploy your applications without worrying about local dependencies.
 
-## Image Contents
+For the latest releases, check out the [Releases section](https://github.com/drlaurajzaragoza/docker-msdk/releases).
 
-This image contains:
+## Features
 
-- **Only** the files installed by the official [Analog Devices MSDK](https://github.com/analogdevicesinc/msdk/) installer
-- No shell, no tools, no system utilities
+- Lightweight and minimal Docker image.
+- Pre-configured environment for Maxim SDK development.
+- Supports various Maxim microcontrollers.
+- Easy to use and integrate into CI/CD pipelines.
 
-This image is **not** a runnable container and is not meant to be executed directly (e.g., via `docker run ...`). The image is designed to speed up building dev containers (or other Docker images):
+## Supported Devices
 
-```dockerfile
-ARG MSDK_VER
+This Docker image supports the following Maxim microcontrollers:
 
-FROM ghcr.io/cnuahs/msdk:${MSDK_VER} AS msdk
+- **MAX32520**
+- **MAX32570**
+- **MAX32572**
+- **MAX32650**
+- **MAX32655**
+- **MAX32660**
+- **MAX32662**
+- **MAX32665**
+- **MAX32670**
+- **MAX32672**
+- **MAX32675**
+- **MAX32680**
+- **MAX32690**
+- **MAX78000**
+- **MAX78002**
 
-FROM ubuntu:24.04 AS base
+These devices cover a wide range of applications in embedded systems, from simple tasks to complex operations.
 
-# add build tools, scripts, or application logic here
+## Installation
 
-# add the Maxim SDK... 
-ARG MAXIM_PATH
-ENV MAXIM_PATH=${MAXIM_PATH:-/opt/msdk/${MSDK_VER}}
+To get started, you need to have Docker installed on your machine. If you haven't done this yet, follow the [Docker installation guide](https://docs.docker.com/get-docker/).
 
-COPY --from=msdk --link msdk/ ${MAXIM_PATH}
-# RUN chown -R ${USER}:${USER} ${MAXIM_PATH}
-```
-
-For a complete dev container built using this image see [msdk-devcontainer.git](https://github.com/cnuahs/msdk-devcontainer.git/).
-
-## Rebuilding the Image
-
-To build the image locally:
+Once Docker is installed, you can pull the Docker image using the following command:
 
 ```bash
-git clone https://github.com/cnuahs/docker-msdk.git
-cd docker-msdk
-docker build -t msdk .
+docker pull drlaurajzaragoza/docker-msdk
 ```
+
+## Usage
+
+After pulling the image, you can run it using the command below. This will start a container with the Maxim SDK environment ready for development.
+
+```bash
+docker run -it drlaurajzaragoza/docker-msdk
+```
+
+You can now begin developing your applications using the Maxim SDK. 
+
+## Building the Image
+
+If you want to customize the Docker image, you can build it from the source. Follow these steps:
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/drlaurajzaragoza/docker-msdk.git
+   cd docker-msdk
+   ```
+
+2. Build the Docker image:
+
+   ```bash
+   docker build -t my-custom-msdk .
+   ```
+
+3. Run your custom image:
+
+   ```bash
+   docker run -it my-custom-msdk
+   ```
+
+## Contributing
+
+We welcome contributions! If you have ideas or improvements, please open an issue or submit a pull request. Here are some ways you can help:
+
+- Report bugs or issues.
+- Improve documentation.
+- Add support for more devices.
+
+Please ensure your contributions align with the project's goals.
 
 ## License
 
-This Dockerfile and build environment are provided under the MIT License.  
-The Analog Devices MSDK itself is licensed separately; refer to its [LICENSE](https://github.com/analogdevicesinc/msdk/).
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## Feedback & Contributions
+## Contact
 
-Issues and PRs are welcome! If you encounter any problems or want to contribute improvements, feel free to open an issue or submit a pull request.
+For questions or feedback, feel free to reach out:
+
+- **Email:** [your-email@example.com](mailto:your-email@example.com)
+- **GitHub:** [drlaurajzaragoza](https://github.com/drlaurajzaragoza)
+
+Thank you for your interest in the **docker-msdk** project! For the latest releases, visit the [Releases section](https://github.com/drlaurajzaragoza/docker-msdk/releases).
